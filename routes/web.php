@@ -16,6 +16,6 @@ use App\Http\Controllers\EmployeeController;
 
 Route::view('/', 'index');
 
-
 Route::get('/employees', [EmployeeController::class, 'getAllEmployees']);
 Route::get('/employees/add', [EmployeeController::class, 'showEmployeeAddForm']);
+Route::get('/employees/{id}', [EmployeeController::class, 'getEmployeeDetails']);

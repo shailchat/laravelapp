@@ -18,4 +18,11 @@ class EmployeeController extends Controller
 
         return view('employees.addForm');
     }
+
+    public function getEmployeeDetails($id){
+
+        $employee = Employee::where('id', $id)->firstOrFail();
+
+        return view('employees.single', compact('employee'));
+    }
 }
