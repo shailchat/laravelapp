@@ -14,11 +14,11 @@
                 <tr>
                     <td><a href={{ url('/employees/'.$employee->id) }}>{{ $employee->name }}</h2></td>
                     <td>
-                        <a href="{{ url('/employees/'.$employee->id.'/edit')}}">Update</a>
-                        <form method="post" action="{{ url('/employees/'.$employee->id) }}">
+                        <a href="{{ url('/employees/'.$employee->id.'/restore')}}">Restore</a>
+                        <form method="post" action="{{ url('/employees/'.$employee->id.'/force') }}">
                             @csrf
                             @method('delete')
-                        <button type="submit"  onclick="return confirm('are you sure?')">delete</button>
+                        <button type="submit"  onclick="return confirm('are you sure?')">Delete</button>
                         </form>
                     </td>
                 </tr>
