@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-	$data = ["a","b","c"];
-    return view('welcome', compact('data'));
-    
-});
+Route::view('/', 'index');
+
+
+Route::get('/employees', [EmployeeController::class, 'getAllEmployees']);
+Route::get('/employees/add', [EmployeeController::class, 'showEmployeeAddForm']);

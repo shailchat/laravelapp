@@ -6,14 +6,13 @@
 
         <title>Laravel</title>
         <script src="https://cdn.tailwindcss.com"></script>
-       
+
     </head>
     <body class="antialiased">
-       <div class="text-center text-3xl font-bold">
-		@foreach($data as $car)
-		{{$car}}
-		<br>
-		@endforeach
-		</div>
+
+        <div>
+            <a href="/employees/add">Add Employee</a>
+            <a href="/employees">List Employees</a>
+        </div>
     </body>
 </html>
