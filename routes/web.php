@@ -17,5 +17,6 @@ use App\Http\Controllers\EmployeeController;
 Route::view('/', 'index');
 
 Route::get('/employees', [EmployeeController::class, 'getAllEmployees']);
+Route::post('/employees', [EmployeeController::class, 'saveEmployee']);
 Route::get('/employees/add', [EmployeeController::class, 'showEmployeeAddForm'])->name('addEmployeeName');
 Route::get('/employees/{id}', [EmployeeController::class, 'getEmployeeDetails']);

@@ -11,7 +11,7 @@ class StoreEmployeeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,19 @@ class StoreEmployeeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "name" => "required|min:3|max:10",
+            "email" => "unique:employees|required|min:5"
+        ];
+    }
+
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'A title is required',
+            'email.required' => 'A message is required',
+            'email.unique' => 'Try another email',
+            'name.min' => "name is not long enough"
         ];
     }
 }
