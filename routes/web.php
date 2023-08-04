@@ -15,20 +15,24 @@ use App\Http\Controllers\StudentController;
 |
 */
 
+
+//https://laravel.com/docs/10.x/routing
 Route::view('/', 'index');
 Route::view('/index1', 'index1');
 Route::view('/index2', 'index2');
 
-Route::get('/employees', [EmployeeController::class, 'getAllEmployees']);
-Route::post('/employees', [EmployeeController::class, 'saveEmployee']);
-Route::put('/employees/{id}', [EmployeeController::class, 'updateEmployee']);
-Route::get('/employees/deleted', [EmployeeController::class, 'getDeletedEmployees']);
-Route::get('/employees/{id}/restore', [EmployeeController::class, 'restoreEmployee']);
-Route::delete('/employees/{id}/force', [EmployeeController::class, 'forceDeleteEmployee']);
-Route::get('/employees/{id}/edit', [EmployeeController::class, 'showEmployeeEditForm']);
-Route::get('/employees/add', [EmployeeController::class, 'showEmployeeAddForm'])->name('addEmployeeName');
-Route::get('/employees/{id}', [EmployeeController::class, 'getEmployeeDetails']);
-Route::delete('/employees/{id}', [EmployeeController::class, 'deleteEmployee']);
+Route::prefix('employees')->group(function () {
+    Route::get('', [EmployeeController::class, 'getAllEmployees']);
+    Route::post('', [EmployeeController::class, 'saveEmployee']);
+    Route::put('/{id}', [EmployeeController::class, 'updateEmployee']);
+    Route::get('/deleted', [EmployeeController::class, 'getDeletedEmployees']);
+    Route::get('/{id}/restore', [EmployeeController::class, 'restoreEmployee']);
+    Route::delete('/{id}/force', [EmployeeController::class, 'forceDeleteEmployee']);
+    Route::get('/{id}/edit', [EmployeeController::class, 'showEmployeeEditForm']);
+    Route::get('/add', [EmployeeController::class, 'showEmployeeAddForm'])->name('addEmployeeName');
+    Route::get('/{id}', [EmployeeController::class, 'getEmployeeDetails']);
+    Route::delete('/{id}', [EmployeeController::class, 'deleteEmployee']);
+});
 
 Route::get('/students', [StudentController::class, 'getallstudents']);
 Route::post('/students', [StudentController::class, 'savestudents']);
