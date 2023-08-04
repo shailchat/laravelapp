@@ -1,57 +1,66 @@
 @extends('layouts.frontend.layout')
 
 @section('content')
-<div class="container mx-auto max-w-screen-md">
+    <div class="container mx-auto max-w-sm">
 
-    <h1 class="font-bold text-2xl">Add Employee</h1>
+        <h1 class="font-bold text-2xl text-center my-2 text-gray-800">Add Employee</h1>
 
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+        <div class="py-5 border px-5 my-5 rounded-lg">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+
+            <form method="post" action="{{ url('/employees')}}">
+
+                @csrf
+
+                <div class="flex flex-col py-3">
+                    <label class="text-sm font-semibold pl-1 text-gray-800">Name</label>
+                    <input type="text" name="name" class="border focus:outline-none px-2 py-2 rounded-lg my-2"
+                           value="{{ old('name') }}"/>
+                </div>
+
+
+                <div class="flex flex-col py-3">
+                    <label class="text-sm font-semibold pl-1 text-gray-800">Email</label>
+                    <input type="email" name="email" class="border focus:outline-none px-2 py-2 rounded-lg my-2"
+                           value="{{ old('email') }}"/>
+                </div>
+
+
+                <div class="flex flex-col py-3">
+                    <label class="text-sm font-semibold pl-1 text-gray-800">Joinnig Date</label>
+                    <input type="date" name="joiningDate" class="border focus:outline-none px-2 py-2 rounded-lg my-2"
+                           value="{{ old('joiningDate')}} "/>
+                </div>
+
+
+                <div class="flex flex-col py-3">
+                    <label class="text-sm font-semibold pl-1 text-gray-800">Designation</label>
+                    <input type="text" name="designation" class="border focus:outline-none px-2 py-2 rounded-lg my-2"
+                           value=" {{old('designation')}} "/>
+                </div>
+
+
+                <div class="flex flex-col py-3">
+                    <label class="text-sm font-semibold pl-1 text-gray-800">Role</label>
+                    <input type="text" name="role" class="border focus:outline-none px-2 py-2 rounded-lg my-2"
+                           value=" {{old('role')}} "/>
+                </div>
+
+
+                <div>
+                    <button type="submit" class="bg-green-500 text-white px-5 w-full py-2 rounded-lg">Submit</button>
+                </div>
+            </form>
+        </div>
     </div>
-@endif
 
-    <form method="post" action={{ url('/employees')}}>
-
-        @csrf
-
-        <div class="flex flex-col py-3">
-            <label>Name</label>
-            <input type="text" name="name" class="border" value="{{ old('name') }}" />
-        </div>
-
-
-        <div class="flex flex-col py-3">
-            <label>Email</label>
-            <input type="email" name="email" class="border" value="{{ old('email') }}" />
-        </div>
-
-
-        <div class="flex flex-col py-3">
-            <label>Joinnig Date</label>
-            <input type="date" name="joiningDate" class="border" value="{{ old('joiningDate')}} " />
-        </div>
-
-
-        <div class="flex flex-col py-3">
-            <label>Designation</label>
-            <input type="text" name="designation" class="border"  value=" {{old('designation')}} " />
-        </div>
-
-
-        <div class="flex flex-col py-3">
-            <label>Role</label>
-            <input type="text" name="role" class="border"  value=" {{old('role')}} " />
-        </div>
-
-
-        <div>
-            <button type="submit" class="bg-green-500 text-white px-5">Submit</button>
-        </div>
-    </form>
-</div>
 @endsection

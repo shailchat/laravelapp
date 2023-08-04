@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>STPI</title>
-        <script src="https://cdn.tailwindcss.com"></script>
 
+        @vite('resources/css/app.css')
     </head>
     <body class="antialiased">
 
@@ -15,5 +15,8 @@
         @yield('content')
 
         @include('layouts.frontend.partials.footer')
+
+        @vite('resources/js/app.js')
+
     </body>
 </html>
