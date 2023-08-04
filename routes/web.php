@@ -21,9 +21,11 @@ Route::view('/index2', 'index2');
 
 Route::get('/employees', [EmployeeController::class, 'getAllEmployees']);
 Route::post('/employees', [EmployeeController::class, 'saveEmployee']);
+Route::put('/employees/{id}', [EmployeeController::class, 'updateEmployee']);
 Route::get('/employees/deleted', [EmployeeController::class, 'getDeletedEmployees']);
 Route::get('/employees/{id}/restore', [EmployeeController::class, 'restoreEmployee']);
 Route::delete('/employees/{id}/force', [EmployeeController::class, 'forceDeleteEmployee']);
+Route::get('/employees/{id}/edit', [EmployeeController::class, 'showEmployeeEditForm']);
 Route::get('/employees/add', [EmployeeController::class, 'showEmployeeAddForm'])->name('addEmployeeName');
 Route::get('/employees/{id}', [EmployeeController::class, 'getEmployeeDetails']);
 Route::delete('/employees/{id}', [EmployeeController::class, 'deleteEmployee']);

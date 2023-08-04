@@ -21,13 +21,13 @@
 
         <div class="flex flex-col py-3">
             <label>Name</label>
-            <input type="text" name="name" class="border" value={{ old('name') }} />
+            <input type="text" name="name" class="border" value="{{ old('name') }}" />
         </div>
 
 
         <div class="flex flex-col py-3">
             <label>Email</label>
-            <input type="email" name="email" class="border" value={{ old('email') }} />
+            <input type="email" name="email" class="border" value="{{ old('email') }}" />
         </div>
 
 

@@ -21,19 +21,19 @@
 
         <div class="flex flex-col py-3">
             <label>Student Name</label>
-            <input type="text" name="studentname" class="border" maxlength="50" value={{ old('studentname') }}  />
+            <input type="text" maxlength="50"  name="studentname" class="border" value="{{ old('studentname') }}"  />
         </div>
 
 
         <div class="flex flex-col py-3">
             <label>Father Name</label>
-            <input type="text" name="stfathername" class="border" maxlength="50" value={{ old('stfathername') }}  />
+            <input type="text" name="stfathername" class="border" maxlength="50" value="{{ old('stfathername') }}"  />
         </div>
 
 
         <div class="flex flex-col py-3">
             <label>Student DoB</label>
-            <input type="date" name="studentdob" class="border" value="{{ old('studentdob')}} " maxlength="10"/>
+            <input type="date" name="studentdob" class="border" value="{{ old('studentdob')}}" maxlength="10"/>
         </div>
 
 

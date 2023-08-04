@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
+use App\Util\EmployeeUtitlity;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -38,9 +39,13 @@ class EmployeeController extends Controller
         // ]);
 
 
+        // fetch the last id
+        $lastEmployee = Employee::orderBy('created_at', 'desc')->first();
+
+        // save employee to db
         Employee::create([
             "name" => $request->name,
-            "empId" => "emp",
+            "empId" => EmployeeUtitlity::generateEmployeeId($lastEmployee->id),
             "email" => $request->email,
             "joiningDate" => $request->joiningDate,
             "designation" => $request->designation,
@@ -74,5 +79,24 @@ class EmployeeController extends Controller
         $employee = Employee::where('id', $id)->onlyTrashed()->firstOrFail();
         $employee->forceDelete();
         return redirect('/employees/deleted');
+    }
+
+    public function showEmployeeEditForm($id){
+        $employee = Employee::where('id', $id)->firstOrFail();
+
+        return view('employees.edit', compact('employee'));
+    }
+
+    public function updateEmployee(Request $request, $id){
+
+
+        $employee = Employee::where('id', $id)->firstOrFail();
+        $employee->name = $request->name;
+        $employee->designation = $request->designation;
+        $employee->save();
+
+        return redirect('/employees');
+
+
     }
 }
