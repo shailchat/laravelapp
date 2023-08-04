@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,8 @@ use App\Http\Controllers\EmployeeController;
 */
 
 Route::view('/', 'index');
+Route::view('/index1', 'index1');
+Route::view('/index2', 'index2');
 
 Route::get('/employees', [EmployeeController::class, 'getAllEmployees']);
 Route::post('/employees', [EmployeeController::class, 'saveEmployee']);
@@ -25,3 +28,11 @@ Route::get('/employees/add', [EmployeeController::class, 'showEmployeeAddForm'])
 Route::get('/employees/{id}', [EmployeeController::class, 'getEmployeeDetails']);
 Route::delete('/employees/{id}', [EmployeeController::class, 'deleteEmployee']);
 
+Route::get('/students', [StudentController::class, 'getallstudents']);
+Route::post('/students', [StudentController::class, 'savestudents']);
+Route::get('/students/deleted', [StudentController::class, 'getdeletedstudents']);
+Route::get('/students/{id}/restore', [StudentController::class, 'restorestudents']);
+Route::delete('/students/{id}/force', [StudentController::class, 'forcedeletestudents']);
+Route::get('/students/add', [StudentController::class, 'showstudentsaddform'])->name('addstudentname');
+Route::get('/students/{id}', [StudentController::class, 'getstudentdetails']);
+Route::delete('/students/{id}', [StudentController::class, 'deletestudent']);

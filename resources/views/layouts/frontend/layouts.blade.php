@@ -10,11 +10,9 @@
     </head>
     <body class="antialiased">
 
-        <div class="flex justify-center space-x-5 border-b">
+        @include('layouts.frontend.partials.navstd')
 
-            <a href={{ url("/index1")}} class="font-semibold py-5 hover:text-blue-500">Employees</a>
-            <a href={{ url("/index2")}} class="font-semibold py-5 hover:text-blue-500">Students</a>
-        </div>
+        @yield('content')
 
         @include('layouts.frontend.partials.footer')
     </body>
