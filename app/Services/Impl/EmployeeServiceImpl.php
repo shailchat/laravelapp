@@ -13,7 +13,7 @@ class EmployeeServiceImpl implements EmployeeService
 
     public function getAllEmployees()
     {
-        $employees = Employee::all();
+        $employees = Employee::paginate(10);
         return $employees;
     }
 

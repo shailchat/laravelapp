@@ -17,7 +17,12 @@ class EmployeeFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            "empId" => fake()->numberBetween(1002, 9999),
+            "name" => fake()->name(),
+            "joiningDate" => fake()->date(),
+            "designation" => "Developer",
+            "role" => "contract",
+            "email" => fake()->unique()->safeEmail()
         ];
     }
 }

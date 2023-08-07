@@ -3,7 +3,6 @@
 @section('content')
     <div class="container mx-auto max-w-screen-md">
         <h1 class="font-bold text-2xl">Employees List</h1>
-
         <table class="w-full">
             <tr>
                 <th>Name</th>
@@ -18,12 +17,17 @@
                         <form method="post" action="{{ url('/employees/'.$employee->id) }}">
                             @csrf
                             @method('delete')
-                        <button type="submit"  onclick="return confirm('are you sure?')">delete</button>
+                            <button type="submit" onclick="return confirm('are you sure?')">delete</button>
                         </form>
                     </td>
                 </tr>
 
             @endforeach
-            </table>
+        </table>
+
+
+        <div class="my-10">
+            {{ $employees->links() }}
         </div>
+    </div>
 @endsection
