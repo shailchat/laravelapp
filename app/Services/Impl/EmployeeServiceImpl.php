@@ -3,7 +3,7 @@
 namespace App\Services\Impl;
 
 use App\Http\Requests\StoreEmployeeRequest;
-use App\Models\Employee;
+use App\Models\Project;
 use App\Services\EmployeeService;
 use App\Util\EmployeeUtitlity;
 use Illuminate\Http\Request;
@@ -13,21 +13,21 @@ class EmployeeServiceImpl implements EmployeeService
 
     public function getAllEmployees()
     {
-        $employees = Employee::paginate(10);
+        $employees = Project::paginate(10);
         return $employees;
     }
 
     public function getEmployeeDetails($id)
     {
-        return Employee::where('id', $id)->firstOrFail();
+        return Project::where('id', $id)->firstOrFail();
     }
 
 
     public function saveEmployee(StoreEmployeeRequest $request)
     {
         // fetch the last id
-        $lastEmployee = Employee::orderBy('created_at', 'desc')->first();
-        $employee = Employee::create([
+        $lastEmployee = Project::orderBy('created_at', 'desc')->first();
+        $employee = Project::create([
             "name" => $request->name,
             "empId" => EmployeeUtitlity::generateEmployeeId($lastEmployee->id),
             "email" => $request->email,
@@ -41,13 +41,13 @@ class EmployeeServiceImpl implements EmployeeService
 
     public function deleteEmployee($id)
     {
-        $employee = Employee::where('id', $id)->firstOrFail();
+        $employee = Project::where('id', $id)->firstOrFail();
         $employee->delete();
     }
 
     public function updateEmployees(Request $request, $id)
     {
-        $employee = Employee::where('id', $id)->firstOrFail();
+        $employee = Project::where('id', $id)->firstOrFail();
         $employee->name = $request->name;
         $employee->designation = $request->designation;
         $employee->save();

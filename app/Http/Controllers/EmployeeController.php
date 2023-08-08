@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\EmployeeCreated;
-use App\Models\Employee;
+use App\Models\Project;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Services\EmployeeService;
 use App\Services\Impl\EmployeeServiceImpl;
@@ -74,14 +74,14 @@ class EmployeeController extends Controller
 
     public function getDeletedEmployees()
     {
-        $employees = Employee::onlyTrashed()->get();
+        $employees = Project::onlyTrashed()->get();
 
         return view('employees.deleted', compact('employees'));
     }
 
     public function restoreEmployee($id)
     {
-        $employee = Employee::where('id', $id)->onlyTrashed()->firstOrFail();
+        $employee = Project::where('id', $id)->onlyTrashed()->firstOrFail();
         $employee->restore();
 
         return redirect('/employees');
@@ -89,14 +89,14 @@ class EmployeeController extends Controller
 
     public function forceDeleteEmployee($id)
     {
-        $employee = Employee::where('id', $id)->onlyTrashed()->firstOrFail();
+        $employee = Project::where('id', $id)->onlyTrashed()->firstOrFail();
         $employee->forceDelete();
         return redirect('/employees/deleted');
     }
 
     public function showEmployeeEditForm($id)
     {
-        $employee = Employee::where('id', $id)->firstOrFail();
+        $employee = Project::where('id', $id)->firstOrFail();
 
         return view('employees.edit', compact('employee'));
     }

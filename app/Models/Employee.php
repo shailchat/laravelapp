@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Employee extends Model
+class Project extends Model
 {
     use HasFactory, SoftDeletes;
+
+    public $table = "users";
 
     public $fillable = ['name', 'empId', 'joiningDate', 'designation', 'role', 'email'];
 }

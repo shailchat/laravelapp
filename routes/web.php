@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,22 @@ Route::prefix('employees')->group(function () {
     Route::get('/{id}', [EmployeeController::class, 'getEmployeeDetails']);
     Route::delete('/{id}', [EmployeeController::class, 'deleteEmployee']);
 });
+
+
+Route::prefix('projects')->group(function () {
+    Route::get('/', [ProjectController::class, 'getAllProjects']);
+    Route::post('/', [ProjectController::class, 'saveProjects']);
+    Route::put('/{id}', [ProjectController::class, 'updateProjects']);
+    Route::get('/deleted', [ProjectController::class, 'getDeletedProjects']);
+    Route::get('/{id}/restore', [ProjectController::class, 'restoreProjects']);
+    Route::delete('/{id}/force', [ProjectController::class, 'forceDeleteProjects']);
+    Route::get('/{id}/edit', [ProjectController::class, 'showProjectsEditForm']);
+    Route::get('/add', [ProjectController::class, 'showProjectAddForm'])->name('addProjectName')->middleware('auth');
+    Route::get('/{id}', [ProjectController::class, 'getProjectDetails']);
+    Route::delete('/{id}', [ProjectController::class, 'deleteProject']);
+});
+
+
 
 Route::get('/students', [StudentController::class, 'getallstudents']);
 Route::post('/students', [StudentController::class, 'savestudents']);

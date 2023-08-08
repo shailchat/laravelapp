@@ -16,21 +16,7 @@
 
 {{--    <a href="{{ url("/admin-only") }}"  class="font-semibold py-5 hover:text-blue-500">Dashboard</a>--}}
 
-{{--    @guest--}}
-{{--        <a href={{ url("/register")}} class="font-semibold py-5 hover:text-blue-500">Register</a>--}}
-{{--        <a href={{ url("/login")}} class="font-semibold py-5 hover:text-blue-500">Login</a>--}}
 
-{{--    @else--}}
-{{--        <a href="{{ route('logout') }}"--}}
-{{--           class="font-semibold py-5 hover:text-blue-500"--}}
-{{--           onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">--}}
-{{--            Logout--}}
-{{--        </a>--}}
-{{--        <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">--}}
-{{--            {{ csrf_field() }}--}}
-{{--        </form>--}}
-{{--    @endguest--}}
-{{--</div>--}}
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -50,8 +36,34 @@
                     <a class="nav-link" href="{{ url('/students') }}">Students</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    <a class="nav-link" href="{{ url('/projects') }}">Projects</a>
                 </li>
+
+
+
+
+                    @guest
+                    <li class="nav-item">
+                        <a href={{ url("/register")}} class="font-semibold py-5 hover:text-blue-500">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href={{ url("/login")}} class="font-semibold py-5 hover:text-blue-500">Login</a>
+                    </li>
+                    @else
+                    <li class="nav-item">
+                        <a href="{{ route('logout') }}"
+                           class="font-semibold py-5 hover:text-blue-500"
+                           onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
+                            Logout
+                        </a>
+                        <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </li>
+                    @endguest
+                </div>
+
+
             </ul>
             <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
