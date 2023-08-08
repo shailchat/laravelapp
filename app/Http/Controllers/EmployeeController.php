@@ -9,6 +9,7 @@ use App\Services\EmployeeService;
 use App\Services\Impl\EmployeeServiceImpl;
 use App\Util\EmployeeUtitlity;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class EmployeeController extends Controller
@@ -18,11 +19,15 @@ class EmployeeController extends Controller
 
     public function __construct(EmployeeServiceImpl $employeeService)
     {
+        Log::debug('An informational message.');
         $this->empService = $employeeService;
     }
 
     public function getAllEmployees()
     {
+        Log::info("getAllEmployees() called");
+        Log::debug("message");
+        Log::error("message");
 
         $employees = $this->empService->getAllEmployees();
         return view('employees.index', compact('employees'));
