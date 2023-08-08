@@ -22,6 +22,9 @@
                             <button type="submit" onclick="return confirm('are you sure?')">delete</button>
                         </form>
                     </td>
+                    <td>
+                        {{ $project->user->name }}
+                    </td>
                 </tr>
 
             @endforeach

@@ -2,14 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreEmployeeRequest;
-use App\Mail\EmployeeCreated;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
-use App\Http\Requests\UpdateProjectRequest;
-use App\Services\Impl\EmployeeServiceImpl;
 use App\Services\Impl\ProjectServiceImpl;
-use Illuminate\Support\Facades\Mail;
 
 class ProjectController extends Controller
 {
@@ -50,7 +45,6 @@ class ProjectController extends Controller
 
     public function deleteEmployee($id)
     {
-
         $this->projectService->deleteEmployee($id);
 
         return redirect('/projects');
@@ -87,12 +81,7 @@ class ProjectController extends Controller
 
     public function updateProject(Request $request, $id)
     {
-
-
         $this->projectService->updateProjects($request, $id);
-
         return redirect('/projects');
-
-
     }
 }

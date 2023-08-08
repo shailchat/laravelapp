@@ -21,6 +21,12 @@ require __DIR__.'/auth.php';
 
 Route::view('/', 'index');
 
+
+Route::get('/users', function(){
+    $users = \App\Models\User::with('projects')->get();
+    return $users;
+});
+
 Route::prefix('employees')->group(function () {
     Route::get('', [EmployeeController::class, 'getAllEmployees']);
     Route::post('', [EmployeeController::class, 'saveEmployee']);

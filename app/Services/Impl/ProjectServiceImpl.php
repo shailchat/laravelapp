@@ -15,7 +15,7 @@ class ProjectServiceImpl implements ProjectService
 
     public function getAllProjects()
     {
-        $projects = Project::paginate(10);
+        $projects = Project::with('user')->paginate(10);
         return $projects;
     }
 
