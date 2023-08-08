@@ -29,7 +29,8 @@ class EmployeeController extends Controller
         Log::debug("message");
         Log::error("message");
 
-        $employees = $this->empService->getAllEmployees();
+        $employees = $this->empService->getAllEmployeess();
+
         return view('employees.index', compact('employees'));
     }
 
@@ -57,8 +58,6 @@ class EmployeeController extends Controller
         //     'author.name' => 'required',
         //     'author.description' => 'required',
         // ]);
-
-
 
 
         // save employee to db
