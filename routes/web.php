@@ -16,30 +16,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/admin-only', function(){
-    return "welcome to dashboard";
-})->middleware(['auth', 'verified']);
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
 require __DIR__.'/auth.php';
 
 Route::view('/', 'index');
-Route::view('/index1', 'index1');
-Route::view('/index2', 'index2');
 
 Route::prefix('employees')->group(function () {
     Route::get('', [EmployeeController::class, 'getAllEmployees']);

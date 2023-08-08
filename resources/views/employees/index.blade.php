@@ -3,6 +3,7 @@
 @section('content')
     <div class="container mx-auto max-w-screen-md">
         <h1 class="font-bold text-2xl">Employees List</h1>
+        <a href="#">Add employee</a>
         <table class="w-full">
             <tr>
                 <th>Name</th>
