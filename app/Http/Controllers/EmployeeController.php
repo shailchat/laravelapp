@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\EmployeeCreated;
 use App\Models\Employee;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Services\EmployeeService;
 use App\Services\Impl\EmployeeServiceImpl;
 use App\Util\EmployeeUtitlity;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class EmployeeController extends Controller
 {
@@ -55,7 +57,10 @@ class EmployeeController extends Controller
 
 
         // save employee to db
-        $this->empService->saveEmployee($request);
+        $employee = $this->empService->saveEmployee($request);
+
+        Mail::to($employee->email)->send(new EmployeeCreated($employee));
+
         return back();
     }
 
