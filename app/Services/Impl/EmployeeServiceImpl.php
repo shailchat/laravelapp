@@ -3,6 +3,7 @@
 namespace App\Services\Impl;
 
 use App\Http\Requests\StoreEmployeeRequest;
+use App\Models\Employee;
 use App\Models\Project;
 use App\Services\EmployeeService;
 use App\Util\EmployeeUtitlity;
@@ -27,7 +28,7 @@ class EmployeeServiceImpl implements EmployeeService
     {
         // fetch the last id
         $lastEmployee = Project::orderBy('created_at', 'desc')->first();
-        $employee = Project::create([
+        $employee = Employee::create([
             "name" => $request->name,
             "empId" => EmployeeUtitlity::generateEmployeeId($lastEmployee->id),
             "email" => $request->email,
