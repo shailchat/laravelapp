@@ -22,3 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get("/employees", [EmployeeController::class, 'getAllEmployees']);
 Route::post("/employees", [EmployeeController::class, 'saveEmployee']);
 Route::get("/employees/{id}", [EmployeeController::class, 'getAllEmployeeById']);
+
+
+Route::get('/todos', [\App\Http\Controllers\Api\TodoController::class, 'getTodos']);
