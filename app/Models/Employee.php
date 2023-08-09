@@ -12,4 +12,8 @@ class Employee extends Model
 
 
     public $fillable = ['name', 'empId', 'joiningDate', 'designation', 'role', 'email'];
+
+    public function getDevelopers($designation){
+        return $this->where('designation', $designation);
+    }
 }

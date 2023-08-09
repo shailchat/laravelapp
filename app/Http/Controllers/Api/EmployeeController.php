@@ -19,7 +19,22 @@ class EmployeeController extends Controller
 
     public function getAllEmployees(Request $request)
     {
-        $employees = Employee::paginate(1);
+
+        // validate query params
+        $perPage = $request->perPage;
+        $order = $request->order;
+        $sortBy = $request->sortBy;
+        $designation = $request->designation;
+
+        $employees = new Employee();
+
+
+        if($designation){
+            $employees = $employees->getDevelopers($designation);
+        }
+
+        $employees = $employees->orderBy($sortBy, $order)
+            ->paginate($perPage);
         return EmployeeResource::collection($employees);
     }
 
