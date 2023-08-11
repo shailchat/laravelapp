@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
+use App\Models\User;
 use App\Services\Impl\ProjectServiceImpl;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class ProjectController extends Controller
 {
@@ -72,15 +76,29 @@ class ProjectController extends Controller
         return redirect('/projects/deleted');
     }
 
-    public function showProjectEditForm($id)
+    public function showProjectsEditForm($id)
     {
-        $employee = Project::where('id', $id)->firstOrFail();
+        $project = Project::where('id', $id)->firstOrFail();
 
-        return view('projects.edit', compact('employee'));
+        return view('projects.edit', compact('project'));
     }
 
-    public function updateProject(Request $request, $id)
+    public function updateProjects(Request $request, $id)
     {
+
+        $project = Project::where('id', $id)->firstOrFail();
+
+//        if (! Gate::allows('update-project', $project)) {
+//            abort(403);
+//        }
+
+        $user = User::where('id', 9)->firstOrFail();
+        auth()->login($user);
+
+        if (!Auth::user()->can('update', $project)) {
+            return abort(403);
+        }
+
         $this->projectService->updateProjects($request, $id);
         return redirect('/projects');
     }

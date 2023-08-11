@@ -15,8 +15,8 @@
                 <tr>
                     <td><a href={{ url('/employees/'.$project->id) }}>{{ $project->name }}</h2></td>
                     <td>
-                        <a href="{{ url('/employees/'.$project->id.'/edit')}}">Update</a>
-                        <form method="post" action="{{ url('/employees/'.$project->id) }}">
+                        <a href="{{ url('/projects/'.$project->id.'/edit')}}">Update</a>
+                        <form method="post" action="{{ url('/projects/'.$project->id) }}">
                             @csrf
                             @method('delete')
                             <button type="submit" onclick="return confirm('are you sure?')">delete</button>

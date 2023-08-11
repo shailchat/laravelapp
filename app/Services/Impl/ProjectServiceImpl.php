@@ -44,7 +44,7 @@ class ProjectServiceImpl implements ProjectService
     {
         $employee = Project::where('id', $id)->firstOrFail();
         $employee->name = $request->name;
-        $employee->designation = $request->designation;
+        $employee->description = $request->description;
         $employee->save();
     }
 }
