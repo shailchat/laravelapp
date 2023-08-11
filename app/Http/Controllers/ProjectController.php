@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ProjectCreated;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Models\User;
@@ -100,6 +101,9 @@ class ProjectController extends Controller
         }
 
         $this->projectService->updateProjects($request, $id);
+
+        ProjectCreated::dispatch();
+
         return redirect('/projects');
     }
 }
