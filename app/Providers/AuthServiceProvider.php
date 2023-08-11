@@ -34,8 +34,8 @@ class AuthServiceProvider extends ServiceProvider
 //        });
 
 
-        Gate::define('update-project', function (User $user, Project $project) {
-            return $user->id === $project->user_id;
-        });
+//        Gate::define('update-project', function (User $user, Project $project) {
+//            return $user->id === $project->user_id;
+//        });
     }
 }

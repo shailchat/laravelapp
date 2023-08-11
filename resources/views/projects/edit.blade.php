@@ -15,13 +15,10 @@
     </div>
 @endif
 
-    <form method="post" action={{ url('/projects/'.$project->id)}}>
+    <form method="post" action="{{ url('/projects/'.$project->id)}}">
 
         @csrf
         @method('PUT')
-
-{{--        <input type="hidden" name="_method" value="PUT">--}}
-
 
         <div class="form-group">
             <label for="name">Name</label>
@@ -32,17 +29,12 @@
 
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea type="text" name="description"  class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter email">
-            {{ $project->description }}
-            </textarea>
+            <textarea type="text" name="description"  class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter email">{{ $project->description }}</textarea>
             {{--            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>--}}
         </div>
 
-
-
-
         <div>
-            <button type="submit" class="bg-green-500 text-white px-5">Update Employee Date</button>
+            <button type="submit" class="btn btn-success">Update Employee Date</button>
         </div>
     </form>
 </div>

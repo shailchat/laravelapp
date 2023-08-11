@@ -21,6 +21,16 @@ require __DIR__.'/auth.php';
 
 Route::view('/', 'index');
 
+Route::get('/role', function(){
+    $user = \App\Models\User::with('role')
+        ->with('role.permissions')
+        ->where('id', 9)
+        ->firstOrFail();
+
+
+
+    return $user->role->permissions->pluck('name')->contains('update-project');
+});
 
 Route::get('/users', function(){
     $users = \App\Models\User::with('projects')->get();
